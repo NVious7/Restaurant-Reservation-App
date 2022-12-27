@@ -34,7 +34,12 @@ function nameIsValid(req, res, next) {
 
 function capacityIsValid(req, res, next) {
   const { capacity } = req.body.data;
-  if (!capacity || capacity < 1 || isNaN(capacity)) {
+  if (
+    !capacity ||
+    capacity < 1 ||
+    isNaN(capacity) ||
+    !Number.isInteger(capacity)
+  ) {
     return next({
       status: 400,
       message: "Invalid capacity",
