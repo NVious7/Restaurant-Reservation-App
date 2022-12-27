@@ -8,12 +8,18 @@ import React from "react";
  *  a bootstrap danger alert that contains the message string.
  */
 
-function ErrorAlert({ error }) {
-  return (
-    error && (
-      <div className="alert alert-danger m-2">Error: {error.message}</div>
-    )
-  );
+function ErrorAlert({ errors }) {
+  if (errors.length) {
+    return (
+      <div className="alert alert-danger m-2">
+        <p>Error:</p>
+        {errors.map((error) => (
+          <p key={errors.indexOf(error)}> {error.message}</p>
+        ))}
+      </div>
+    );
+  }
+  return null;
 }
 
 export default ErrorAlert;
